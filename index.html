@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>BD VIRUS</title>
+  <style>
+    body {
+      font-family: "Consolas", monospace;
+      background-color: black;
+      color: green;
+      text-align: center;
+      padding-top: 50px;
+    }
+    h1 {
+      font-size: 24px;
+    }
+    button {
+      font-size: 16px;
+      padding: 10px 20px;
+      margin: 20px;
+      cursor: pointer;
+    }
+    #btn-yes {
+      background-color: green;
+      color: white;
+      border: none;
+    }
+    #btn-no {
+      background-color: red;
+      color: white;
+      border: none;
+    }
+    #animated-message {
+      font-size: 18px;
+      margin-top: 20px;
+    }
+    #final-message {
+      font-size: 24px;
+      color: green;
+      display: none;
+    }
+  </style>
+</head>
+<body>
+
+  <h1>¿Es BS/RD mejor que SF?</h1>
+  <button id="btn-yes">Sí</button>
+  <button id="btn-no">No</button>
+  <div id="animated-message"></div>
+  <div id="final-message">Eso pensaba... Buen chico.</div>
+
+  <script>
+    const btnYes = document.getElementById('btn-yes');
+    const btnNo = document.getElementById('btn-no');
+    const animatedMessage = document.getElementById('animated-message');
+    const finalMessage = document.getElementById('final-message');
+
+    let interval;
+    let dots = 0;
+
+    function animateDots() {
+      dots = (dots + 1) % 4;  // Ciclo de 0 a 3 puntos
+      animatedMessage.textContent = `Borrando datos del computador${'.'.repeat(dots)}`;
+    }
+
+    btnYes.addEventListener('click', () => {
+      btnYes.style.display = 'none';
+      btnNo.style.display = 'none';
+      animatedMessage.style.display = 'block';
+
+      // Abrir el video de YouTube
+      window.open('https://www.youtube.com/watch?v=zOeTZzZGpBg', '_blank');
+
+      // Iniciar la animación de puntos
+      interval = setInterval(animateDots, 250);
+
+      // Mostrar el mensaje final después de 10 segundos
+      setTimeout(() => {
+        clearInterval(interval);
+        animatedMessage.style.display = 'none';
+        finalMessage.style.display = 'block';
+
+        // Cerrar el mensaje final después de 5 segundos
+        setTimeout(() => {
+          finalMessage.style.display = 'none';
+        }, 5000);
+      }, 10000);
+    });
+
+    btnNo.addEventListener('mouseover', () => {
+      const x = Math.random() * (window.innerWidth - btnNo.offsetWidth);
+      const y = Math.random() * (window.innerHeight - btnNo.offsetHeight);
+      btnNo.style.position = 'absolute';
+      btnNo.style.left = `${x}px`;
+      btnNo.style.top = `${y}px`;
+    });
+  </script>
+
+</body>
+</html>
